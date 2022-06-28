@@ -3,19 +3,18 @@ import dotenv from 'dotenv';
 import log4js from 'log4js'
 const pjson = require('../package.json')
 
+// Inital Settings port, loglevel, etc...
 dotenv.config()
-
 const app = express();
 const port = process.env.port;
 const logLevel = process.env.log_level || 'info';
-
 let logger = log4js.getLogger();
 logger.level = logLevel;
-
+//App Settings name, version, endpoint
 const appName = pjson.name;
 const version = pjson.version;
 let endpointPreamble = `/${appName}/v1/`
-console.log(endpointPreamble)
+logger.info(`Current endpoint preamble: ${endpointPreamble}`)
 
 
 export class apiServer {
